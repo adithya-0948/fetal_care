@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prediction | Fetal Health Care</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<div class="navbar">
+    <h2>Fetal Health Care</h2>
+    <div>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/analytics">Analytics</a>
+        <a href="/records">Records</a>
+    </div>
+</div>
+
+<div class="container fade-in">
+
+    <form action="/predict" method="post">
+
+        <!-- ===== PATIENT INFO ===== -->
+        <div class="card">
+            <h2>👤 Patient Information</h2>
+
+            <div class="form-grid">
+                <input type="text" name="name" placeholder="Patient Name" required>
+                <input type="text" name="patient_id" placeholder="Patient ID" required>
+                <input type="number" name="age" placeholder="Gestational Age (weeks)" required>
+            </div>
+        </div>
+
+
+        <!-- ===== CTG INPUT ===== -->
+        <div class="card">
+            <h2>CTG Parameters</h2>
+
+            <div class="form-grid">
+
+                {% for feature in features %}
+                <div class="input-group">
+                    <label>{{ feature.replace('_',' ').title() }}</label>
+                    <input type="number" step="any" name="features" required>
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+
+
+        <!-- ===== SUBMIT ===== -->
+        <div class="card" style="text-align:center;">
+            <button type="submit">🔍 Analyze Fetal Health</button>
+        </div>
+
+    </form>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Result | Fetal Health Care</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<div class="navbar">
+    <h2>Fetal Health Care</h2>
+    <div>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/predict">New Prediction</a>
+        <a href="/records">Records</a>
+    </div>
+</div>
+
+<div class="container fade-in">
+
+    <!-- ===== MAIN RESULT ===== -->
+    <div class="card" style="text-align:center; padding:30px;">
+
+        <h2> Diagnosis Result</h2>
+
+        <!-- Dynamic Color Result -->
+        <div class="result {{ result|lower }}">
+            {{ result }}
+        </div>
+
+        <!-- Confidence -->
+        <h3 style="margin-top:15px;">Confidence: {{ confidence }}%</h3>
+
+        <!-- Progress Bar -->
+        <div class="progress-container">
+            <div class="progress-bar" style="width: {{ confidence }}%;"></div>
+        </div>
+
+    </div>
+
+
+    <!-- ===== PROBABILITY BREAKDOWN ===== -->
+    <div class="card">
+
+        <h2>Probability Breakdown</h2>
+
+        <div class="dashboard">
+
+            <div class="dashboard-card">
+                <h3 style="color:#00ff88;">Normal</h3>
+                <p style="font-size:20px;">{{ probs["Normal"] }}%</p>
+            </div>
+
+            <div class="dashboard-card">
+                <h3 style="color:#ffcc00;">Suspect</h3>
+                <p style="font-size:20px;">{{ probs["Suspect"] }}%</p>
+            </div>
+
+            <div class="dashboard-card">
+                <h3 style="color:#ff4d4d;">Pathological</h3>
+                <p style="font-size:20px;">{{ probs["Pathological"] }}%</p>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ===== ACTION BUTTONS ===== -->
+    <div class="card" style="text-align:center;">
+
+        <a href="/predict">
+            <button>🔁 New Prediction</button>
+        </a>
+
+        <br><br>
+
+        <a href="/dashboard">
+            <button style="background:linear-gradient(45deg,#ff7e5f,#feb47b);">
+                 Back to Dashboard
+            </button>
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

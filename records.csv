@@ -1,0 +1,5 @@
+Patient_ID,Name,Gestational_Age,Prediction,Confidence,Prob_Normal,Prob_Suspect,Prob_Pathological
+101,sonu,33,Suspect,86.0,0.11,0.86,0.03
+102,keerthi,32,Suspect,100.0,0.0,1.0,0.0
+103,reshma,35,Pathological,100.0,0.0,0.0,1.0
+1045,R muktha,23,Normal,56.0,0.56,0.18,0.26

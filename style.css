@@ -1,0 +1,225 @@
+/* ===== GLOBAL ===== */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    margin: 0;
+    padding: 0;
+    color: #fff;
+}
+
+/* ===== CONTAINER ===== */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 30px auto;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+.navbar h2 {
+    color: #00c6ff;
+}
+
+.navbar a {
+    color: #fff;
+    margin-left: 15px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.navbar a:hover {
+    color: #00c6ff;
+}
+
+/* ===== CARD ===== */
+.card {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(12px);
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    transition: 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* ===== HEADINGS ===== */
+h1, h2, h3 {
+    text-align: center;
+}
+
+/* ===== BUTTON ===== */
+button {
+    padding: 12px 18px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(45deg, #00c6ff, #0072ff);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 12px rgba(0,198,255,0.6);
+}
+
+/* ===== FORM ===== */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    font-size: 13px;
+    margin-bottom: 5px;
+    color: #ccc;
+}
+
+input {
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+}
+
+/* ===== DASHBOARD GRID ===== */
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.dashboard-card {
+    background: rgba(255,255,255,0.1);
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.dashboard-card:hover {
+    background: rgba(255,255,255,0.2);
+    transform: translateY(-6px);
+}
+
+/* ===== RESULT COLORS ===== */
+.result {
+    font-size: 24px;
+    padding: 15px;
+    border-radius: 15px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.normal {
+    color: #00ff88;
+    box-shadow: 0 0 20px rgba(0,255,150,0.4);
+}
+
+.suspect {
+    color: #ffcc00;
+    box-shadow: 0 0 20px rgba(255,200,0,0.4);
+}
+
+.pathological {
+    color: #ff4d4d;
+    box-shadow: 0 0 20px rgba(255,80,80,0.4);
+}
+
+/* ===== PROGRESS BAR ===== */
+.progress-container {
+    background: rgba(255,255,255,0.1);
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.progress-bar {
+    height: 14px;
+    background: linear-gradient(90deg, #00c6ff, #0072ff);
+    border-radius: 20px;
+    animation: loadBar 1s ease-in-out;
+}
+
+@keyframes loadBar {
+    from { width: 0; }
+}
+
+/* ===== TABLE ===== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+}
+
+th {
+    background: rgba(0,0,0,0.5);
+    color: #00c6ff;
+}
+
+tr:nth-child(even) {
+    background: rgba(255,255,255,0.05);
+}
+
+tr:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+/* ===== SEARCH ===== */
+#searchInput {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+}
+
+/* ===== CHART ===== */
+canvas {
+    margin-top: 20px;
+    max-height: 350px;
+}
+
+/* ===== KPI COLORS ===== */
+.dashboard-card:nth-child(1) h3 { color: #00ff88; }
+.dashboard-card:nth-child(2) h3 { color: #ffcc00; }
+.dashboard-card:nth-child(3) h3 { color: #ff4d4d; }
+.dashboard-card:nth-child(4) h3 { color: #00c6ff; }
+
+/* ===== ANIMATION ===== */
+.fade-in {
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fetal Health Care System</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <div class="navbar">
+        <h2>Fetal Health Care</h2>
+        <div>
+            <a href="/">Home</a>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/predict">Predict</a>
+            <a href="/analytics">Analytics</a>
+        </div>
+    </div>
+
+
+    <!-- ===== HERO SECTION ===== -->
+    <div class="container fade-in">
+
+        <div class="card" style="text-align:center; padding:40px;">
+
+            <h1> Fetal Health Care Monitoring System</h1>
+            <p style="color:#ccc; font-size:16px; margin-top:10px;">
+                Intelligent Cardiotocography (CTG) Analysis using Machine Learning  
+                to assist early detection of fetal conditions.
+            </p>
+
+            <br>
+
+            <a href="/predict">
+                <button style="width:200px;">Start Prediction</button>
+            </a>
+
+            <br><br>
+
+            <a href="/dashboard">
+                <button style="width:200px; background:linear-gradient(45deg,#ff7e5f,#feb47b);">
+                    Go to Dashboard
+                </button>
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- ===== FEATURES SECTION ===== -->
+    <div class="container">
+
+        <h2 style="text-align:center;">System Modules</h2>
+
+        <div class="dashboard">
+
+            <div class="dashboard-card">
+                <h3>👤 Patient Info</h3>
+                <p>Manage patient details including ID, name, and gestational age.</p>
+            </div>
+
+            <div class="dashboard-card">
+                <h3>CTG Input</h3>
+                <p>Enter 21 clinical parameters for accurate fetal assessment.</p>
+            </div>
+
+            <div class="dashboard-card">
+                <h3> Prediction</h3>
+                <p>Extra Trees model classifies fetal condition instantly.</p>
+            </div>
+
+            <div class="dashboard-card">
+                <h3> Visualization</h3>
+                <p>Color-coded results with confidence indicators.</p>
+            </div>
+
+            <div class="dashboard-card">
+                <h3> Analytics</h3>
+                <p>Charts and insights for better medical interpretation.</p>
+            </div>
+
+            <div class="dashboard-card">
+                <h3> Records</h3>
+                <p>Track and review previous patient predictions.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ===== FOOTER ===== -->
+    <div style="text-align:center; margin-top:40px; color:#aaa; font-size:14px;">
+        <p>© 2026 Fetal Health Care System | Developed for Medical Decision Support</p>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Analytics | Fetal Health Care</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<div class="navbar">
+    <h2>Fetal Health Analytics</h2>
+    <div>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/predict">Predict</a>
+        <a href="/records">Records</a>
+    </div>
+</div>
+
+<div class="container fade-in">
+
+    <!-- ===== HEADER ===== -->
+    <div class="card" style="text-align:center;">
+        <h1> Analytics Dashboard</h1>
+        <p style="color:#ccc;">Visual insights into fetal health predictions and model behavior</p>
+    </div>
+
+    <!-- ===== KPI SECTION ===== -->
+    <div class="dashboard">
+
+        <div class="dashboard-card">
+            <h3>🟢 Normal</h3>
+            <p style="font-size:22px;">{{ counts.get('Normal', 0) }}</p>
+        </div>
+
+        <div class="dashboard-card">
+            <h3>🟡 Suspect</h3>
+            <p style="font-size:22px;">{{ counts.get('Suspect', 0) }}</p>
+        </div>
+
+        <div class="dashboard-card">
+            <h3>🔴 Pathological</h3>
+            <p style="font-size:22px;">{{ counts.get('Pathological', 0) }}</p>
+        </div>
+
+        <div class="dashboard-card">
+            <h3> Avg Confidence</h3>
+            <p style="font-size:22px;">{{ avg_conf }}%</p>
+        </div>
+
+    </div>
+
+
+    <!-- ===== CHARTS ===== -->
+    <div class="card">
+        <h2> Prediction Distribution</h2>
+        <canvas id="pieChart"></canvas>
+    </div>
+
+    <div class="card">
+        <h2> Case Comparison</h2>
+        <canvas id="barChart"></canvas>
+    </div>
+
+    <div class="card">
+        <h2> Feature Importance (Top 10)</h2>
+        <canvas id="featureChart"></canvas>
+    </div>
+
+</div>
+
+
+<!-- ===== CHART SCRIPT ===== -->
+<script>
+
+    const counts = {
+        normal: {{ counts.get('Normal', 0) }},
+        suspect: {{ counts.get('Suspect', 0) }},
+        pathological: {{ counts.get('Pathological', 0) }}
+    };
+
+    // ===== PIE CHART =====
+    new Chart(document.getElementById('pieChart'), {
+        type: 'doughnut',
+        data: {
+            labels: ['Normal', 'Suspect', 'Pathological'],
+            datasets: [{
+                data: [counts.normal, counts.suspect, counts.pathological],
+                backgroundColor: [
+                    'rgba(0,255,150,0.8)',
+                    'rgba(255,200,0,0.8)',
+                    'rgba(255,80,80,0.8)'
+                ],
+                borderWidth: 0
+            }]
+        },
+        options: {
+            plugins: {
+                legend: {
+                    labels: { color: '#fff' }
+                }
+            }
+        }
+    });
+
+
+    // ===== BAR CHART =====
+    new Chart(document.getElementById('barChart'), {
+        type: 'bar',
+        data: {
+            labels: ['Normal', 'Suspect', 'Pathological'],
+            datasets: [{
+                label: 'Cases',
+                data: [counts.normal, counts.suspect, counts.pathological],
+                backgroundColor: '#00c6ff',
+                borderRadius: 12
+            }]
+        },
+        options: {
+            scales: {
+                x: { ticks: { color: '#fff' } },
+                y: { ticks: { color: '#fff' } }
+            },
+            plugins: {
+                legend: {
+                    labels: { color: '#fff' }
+                }
+            }
+        }
+    });
+
+
+    // ===== FEATURE IMPORTANCE =====
+    const featureLabels = {{ features | tojson }};
+    const featureValues = {{ values | tojson }};
+
+    new Chart(document.getElementById('featureChart'), {
+        type: 'bar',
+        data: {
+            labels: featureLabels,
+            datasets: [{
+                label: 'Importance',
+                data: featureValues,
+                backgroundColor: '#ff7e5f',
+                borderRadius: 10
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+            scales: {
+                x: { ticks: { color: '#fff' } },
+                y: { ticks: { color: '#fff' } }
+            },
+            plugins: {
+                legend: {
+                    labels: { color: '#fff' }
+                }
+            }
+        }
+    });
+
+</script>
+
+</body>
+</html>

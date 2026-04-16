@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Records | FetalAI</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<div class="navbar">
+    <h2>Fetal Health Records</h2>
+    <div>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/predict">Predict</a>
+        <a href="/analytics">Analytics</a>
+    </div>
+</div>
+
+<div class="container fade-in">
+
+    <!-- ===== HEADER ===== -->
+    <div class="card" style="text-align:center;">
+        <h1> Patient Records</h1>
+        <p style="color:#ccc;">View and manage previous fetal health predictions</p>
+    </div>
+
+    <!-- ===== SEARCH BAR ===== -->
+    <div class="card">
+        <input type="text" id="searchInput" placeholder="🔍 Search by Name or Patient ID...">
+    </div>
+
+    <!-- ===== TABLE ===== -->
+    <div class="card">
+
+        <table id="recordsTable">
+            <thead>
+                <tr>
+                    {% for col in columns %}
+                        <th>{{ col }}</th>
+                    {% endfor %}
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for row in tables %}
+                <tr>
+                    {% for item in row %}
+                        <td>{{ item }}</td>
+                    {% endfor %}
+
+                    <!-- Delete Button -->
+                    <td>
+                        <a href="/delete/{{ row[0] }}">
+                            <button style="background:linear-gradient(45deg,#ff4d4d,#ff0000);">
+                                Delete
+                            </button>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
+
+<!-- ===== SEARCH SCRIPT ===== -->
+<script>
+    const searchInput = document.getElementById("searchInput");
+
+    searchInput.addEventListener("keyup", function() {
+        const filter = searchInput.value.toLowerCase();
+        const rows = document.querySelectorAll("#recordsTable tbody tr");
+
+        rows.forEach(row => {
+            const text = row.innerText.toLowerCase();
+            row.style.display = text.includes(filter) ? "" : "none";
+        });
+    });
+</script>
+
+</body>
+</html>
